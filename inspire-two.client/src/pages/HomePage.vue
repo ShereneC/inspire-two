@@ -1,6 +1,6 @@
 <template>
       <div class="home flex-grow-1 container">
-        Inspire
+
       </div>
 </template>
 
