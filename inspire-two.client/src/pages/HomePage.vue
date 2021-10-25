@@ -1,6 +1,16 @@
 <template>
-      <div class="home flex-grow-1 container">
+      <div class="row">
+        <!-- Image Info goes at bottom left in this column -->
+        <div class="col-md-3 d-flex">
+          <h4 id="image">Image Info</h4>
 
+        </div>
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-3">
+
+        </div>
       </div>
 </template>
 

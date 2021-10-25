@@ -1,8 +1,7 @@
 <template>
-  <!-- <header>
-    <Navbar />
-  </header> -->
-  <main>
+  <Image />
+
+  <main class="container-fluid flex-grow-1 bg-primary">
     <router-view />
   </main>
   <footer>
