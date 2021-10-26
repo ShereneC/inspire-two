@@ -3,9 +3,9 @@ const Schema = mongoose.Schema
 
 export const TaskSchema = new Schema(
   {
-    title: { type: String, required: true },
+    completed: { type: Boolean, default: false },
     description: { type: String, required: true },
-    creatorId: { type: Schema.Types.ObjectId, ref: 'Profile', required: true }
+    creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
