@@ -23,14 +23,14 @@ class TasksService {
     return await dbContext.Tasks.findById(newTask.id)
   }
 
-  async removeTask(id, userId) {
+  async removeTask(id) {
     const task = await this.getTaskById(id)
     if (task) {
-      if (userId === task.creator.id) {
-        const taskToDelete = await dbContext.Tasks.findByIdAndDelete({ _id: id })
-        return taskToDelete
-      }
-      throw new BadRequest('This is not your task!')
+      // if (userId === task.creator.id) {
+      const taskToDelete = await dbContext.Tasks.findByIdAndDelete({ _id: id })
+      return taskToDelete
+      // }
+      // throw new BadRequest('This is not your task!')
     }
     throw new BadRequest('Task Not Found with that ID')
   }
