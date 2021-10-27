@@ -36,7 +36,8 @@ export class TasksController extends BaseController {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
-      res.send(req.body)
+      const task = await tasksService.createTask(req.body)
+      res.send(task)
     } catch (error) {
       next(error)
     }

@@ -18,6 +18,11 @@ class TasksService {
     return foundTask
   }
 
+  async createTask(body) {
+    const newTask = await dbContext.Tasks.create(body)
+    return await dbContext.Tasks.findById(newTask.id)
+  }
+
   async removeTask(id, userId) {
     const task = await this.getTaskById(id)
     if (task) {
