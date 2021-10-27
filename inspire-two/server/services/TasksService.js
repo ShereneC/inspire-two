@@ -27,7 +27,7 @@ class TasksService {
     const task = await this.getTaskById(id)
     if (task) {
       // if (userId === task.creator.id) {
-      const taskToDelete = await dbContext.Tasks.findByIdAndDelete({ _id: id })
+      const taskToDelete = await dbContext.Tasks.findByIdAndDelete(id)
       return taskToDelete
       // }
       // throw new BadRequest('This is not your task!')

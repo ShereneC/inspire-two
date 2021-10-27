@@ -46,6 +46,7 @@ export class TasksController extends BaseController {
   async removeTask(req, res, next) {
     try {
       await tasksService.removeTask(req.params.id)
+      res.send({ message: 'Successfully Deleted' })
     } catch (error) {
       next(error)
     }
