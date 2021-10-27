@@ -11,6 +11,7 @@ export class TasksController extends BaseController {
     // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .get('/:id', this.getTaskById)
       .post('', this.createTask)
+      .put('/:id', this.markAsComplete)
       .delete('/:id', this.removeTask)
   }
 
@@ -37,6 +38,16 @@ export class TasksController extends BaseController {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
       const task = await tasksService.createTask(req.body)
+      res.send(task)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async markAsComplete(req, res, next) {
+    try {
+      req.body.creatorId = req.userInfo.id
+      const task = await tasksService.markAsComplete(req.params.id, req.userInfo.id)
       res.send(task)
     } catch (error) {
       next(error)
