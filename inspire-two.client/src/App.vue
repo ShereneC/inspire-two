@@ -1,5 +1,5 @@
 <template>
-  <Image />
+  <Navbar />
 
   <main class="container-fluid flex-grow-1 bg-primary">
     <router-view />
