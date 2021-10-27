@@ -23,6 +23,19 @@ class TasksService {
     return await dbContext.Tasks.findById(newTask.id)
   }
 
+  async markAsComplete(id, userId) {
+    const task = await dbContext.Tasks.findById(id)
+    if (!task) {
+      throw new BadRequest('No Task Found with this Id')
+    } else if (task.completed === false) {
+      const taskToUpdate = await dbContext.Tasks.findByIdAndUpdate(id, { completed: true }, { new: true })
+      return taskToUpdate
+    } else {
+      const taskToUpdate = await dbContext.Tasks.findByIdAndUpdate(id, { completed: false }, { new: true })
+      return taskToUpdate
+    }
+  }
+
   async removeTask(id, userId) {
     const task = await this.getTaskById(id)
     if (task) {
