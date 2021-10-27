@@ -17,5 +17,18 @@ class TasksService {
     }
     return foundTask
   }
+
+  async removeTask(id, userId) {
+    const task = await this.getTaskById(id)
+    if (task) {
+      if (userId === task.creator.id) {
+        const taskToDelete = await dbContext.Tasks.findByIdAndDelete({ _id: id })
+        return taskToDelete
+      }
+      throw new BadRequest('This is not your task!')
+    }
+    throw new BadRequest('Task Not Found with that ID')
+  }
 }
+
 export const tasksService = new TasksService()

@@ -11,7 +11,7 @@ export class TasksController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:id', this.getTaskById)
       .post('', this.createTask)
-      // .delete('', this.removeTask)
+      .delete('', this.removeTask)
   }
 
   async getAllTasks(req, res, next) {
@@ -40,5 +40,14 @@ export class TasksController extends BaseController {
     } catch (error) {
       next(error)
     }
+  }
+
+  async removeTask(req, res, next) {
+    try {
+      await tasksService.removeTask(req.params.id, req.userInfo.id)
+    } catch (error) {
+      next(error)
+    }
+    return 'Task has been deleted'
   }
 }
